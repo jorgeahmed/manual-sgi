@@ -60,37 +60,19 @@
             <h2>2. Tablero de Control (DB_Tracking)</h2>
             <p>La hoja <code>DB_Tracking</code> funciona como bitácora inalterable de los accesos enviados.</p>
 
-            <!-- Dashboard Visual -->
+            <!-- Dashboard Visual (ApexCharts) -->
             <div class="dashboard-grid">
 
                 <!-- Chart 1: Estatus de Tickets -->
                 <div class="chart-card">
                     <h4>Efectividad de Accesos</h4>
-                    <div class="donut-chart" style="--color-chart: var(--color-secondary);"></div>
-                    <p style="font-size: 0.9rem; opacity: 0.8;">70% Autorizados vs 30% Rechazados</p>
+                    <div id="chart-effectiveness"></div>
                 </div>
 
                 <!-- Chart 2: Volumetría -->
                 <div class="chart-card">
                     <h4>Tickets por Región</h4>
-                    <div class="progress-bar-container">
-                        <div class="progress-label"><span>Metro Norte</span><span>45%</span></div>
-                        <div class="progress-track">
-                            <div class="progress-fill" style="width: 45%;"></div>
-                        </div>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-label"><span>Metro Sur</span><span>30%</span></div>
-                        <div class="progress-track">
-                            <div class="progress-fill" style="width: 30%; background-color: #ffc107;"></div>
-                        </div>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-label"><span>Bajío</span><span>25%</span></div>
-                        <div class="progress-track">
-                            <div class="progress-fill" style="width: 25%; background-color: #17a2b8;"></div>
-                        </div>
-                    </div>
+                    <div id="chart-region"></div>
                 </div>
 
             </div>
@@ -115,7 +97,7 @@
                     <p style="font-size: 0.9rem;">Causa probable: El ID de Telegram en <code>Directorio_Regional</code>
                         está vacío o es incorrecto.</p>
                     <p style="font-size: 0.9rem;"><strong>Solución:</strong> Pide al líder regional que escriba
-                        <code>/start</code> en el bot para obtener su ID y actualízalo en la hoja.
+                        <code>/start</code> en el bot para obtener su ID y actúalízalo en la hoja.
                     </p>
                 </div>
             </div>
@@ -128,6 +110,10 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
+    <!-- ApexCharts CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="js/charts.js"></script>
 </body>
 
-</html><script src='js/search.js'></script>
+</html>
