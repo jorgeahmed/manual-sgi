@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGI Docs | Manual Técnico</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <!-- Mermaid JS -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="nav-logo">SGI Docs</a>
+            <div class="nav-links">
+                <a href="tecnico.html" class="nav-link active">Técnico</a>
+                <a href="campo.html" class="nav-link">Campo</a>
+                <a href="admin.html" class="nav-link">Admin</a>
+                <button id="themeToggle" class="theme-toggle">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" style="padding: 80px 0 40px;">
+        <div class="container">
+            <h1>Manual Técnico</h1>
+            <p>Arquitectura del Sistema, Flujos de Datos y Documentación del Código</p>
+        </div>
+    </header>
+
+    <main class="container manual-section">
+
+        <!-- SECCIÓN 1: ROUTER -->
+        <section class="card mb-4 reveal">
+            <h2>1. Router Dinámico (Data-Driven)</h2>
+            <p>El núcleo del sistema es un router inteligente que decide qué función ejecutar basándose en la
+                configuración de la hoja de cálculo <code>Directorio_Regional</code>. Esto permite agregar nuevas
+                regiones o flujos sin modificar el código.</p>
+
+            <div class="mermaid">
+                graph TD
+                A[Formulario Google] -->|Trigger| B(onAccessFormSubmit)
+                B --> C{Obtener Sucursal}
+                C --> D[Consultar DB_Sucursales]
+                D --> E{¿Existe Sucursal?}
+                E -- NO --> F[Error / Log]
+                E -- SI --> G[Obtener Región]
+                G --> H[Consultar Directorio_Regional]
+                H --> I[Obtener Función Columna I]
+                I --> J{Ejecutar Dinámicamente}
+                J --> K[ejecutarFlujoEstandarV33]
+                J --> L[ejecutarFlujoMetro]
+            </div>
+
+            <h3>Función Principal: <code>onAccessFormSubmit(e)</code></h3>
+            <pre><code>function onAccessFormSubmit(e) {
+  // 1. Obtiene la Sucursal del evento
+  // 2. Busca la región en DB_Sucursales
+  // 3. Busca el nombre de la función en Directorio_Regional
+  // 4. Ejecuta this[nombreFuncion](e)
+}</code></pre>
+        </section>
+
+        <!-- SECCIÓN 2: ACCESOS V33 -->
+        <section class="card mb-4 reveal">
+            <h2>2. Módulo de Accesos (V33)</h2>
+            <p>Gestiona la generación de cartas de acceso en PDF, notificaciones por correo y alertas en Telegram con
+                geolocalización.</p>
+            <ul>
+                <li><strong>Entrada:</strong> Formulario de Google (Respuestas_Accesos).</li>
+                <li><strong>Proceso:</strong> Cruce de datos con <code>DB_Sucursales</code> (Tickets, SIRH, Building
+                    ID).</li>
+                <li><strong>Salida:</strong> PDF generado desde template, Email a Líderes, Telegram al Grupo Regional.
+                </li>
+            </ul>
+        </section>
+
+        <!-- SECCIÓN 3: COTIZADOR IA -->
+        <section class="card mb-4 reveal">
+            <h2>3. Motor de Cotizaciones IA (Ingeniería de Costos)</h2>
+            <p>Sistema avanzado que utiliza Agentes LLM (OpenAI) y Búsqueda Vectorial para estimar costos de
+                mantenimiento.</p>
+
+            <div class="mermaid">
+                sequenceDiagram
+                participant User as Formulario
+                participant Main as Script Cotizador
+                participant AgtA as Agente A (Procesos)
+                participant AgtB as Agente B (Cuantificador)
+                participant VecDB as Vector DB (Embeddings)
+                participant AgtC as Agente C (Precios)
+
+                User->>Main: Envía Hallazgo + Fotos
+                Main->>AgtA: ¿Qué actividades se requieren?
+                AgtA->>Main: Plan de Trabajo (Preliminares, Ejecución)
+                Main->>AgtB: ¿Cuánta cantidad? (Deducción)
+                AgtB->>Main: Lista Cuantificada
+                loop Validar Item
+                Main->>VecDB: Buscar Items Similares (Embeddings)
+                VecDB->>Main: Candidatos Catálogo
+                Main->>AgtC: Seleccionar Mejor Opción o Estimar
+                AgtC->>Main: Precio Unitario / Clave
+                end
+                Main->>User: Genera PDF Cotización
+            </div>
+
+            <h3>Agentes Definidos</h3>
+            <table style="width:100%; border-collapse: collapse; margin-top: 1rem;">
+                <tr style="background: rgba(0,0,0,0.05);">
+                    <th style="padding:10px; border:1px solid #ccc;">Agente</th>
+                    <th style="padding:10px; border:1px solid #ccc;">Rol</th>
+                    <th style="padding:10px; border:1px solid #ccc;">Función</th>
+                </tr>
+                <tr>
+                    <td style="padding:10px; border:1px solid #ccc;"><strong>Agente A</strong></td>
+                    <td style="padding:10px; border:1px solid #ccc;">Ingeniero de Procesos</td>
+                    <td style="padding:10px; border:1px solid #ccc;">Desglosa el hallazgo en pasos lógicos (Preliminar
+                        -> Ejecución -> Cierre).</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px; border:1px solid #ccc;"><strong>Agente B</strong></td>
+                    <td style="padding:10px; border:1px solid #ccc;">Generador de Números</td>
+                    <td style="padding:10px; border:1px solid #ccc;">Calcula cantidades basándose en "Cantidades
+                        Maestras" detectadas en el texto.</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px; border:1px solid #ccc;"><strong>Agente C</strong></td>
+                    <td style="padding:10px; border:1px solid #ccc;">Analista de Precios</td>
+                    <td style="padding:10px; border:1px solid #ccc;">Realiza el "Matching" con el catálogo oficial o
+                        estima precios de mercado.</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- SECCIÓN 4: TELEGRAM -->
+        <section class="card mb-4">
+            <h2>4. Integración Telegram</h2>
+            <p>El bot utiliza la API de Telegram para enviar reportes ricos en formato.</p>
+            <pre><code>function enviarNotificacionTelegram(token, chatId, mensaje, pdfBlob, lat, lon) {
+  // 1. Envía PDF con Caption (Resumen)
+  // 2. Envía Ubicación (SendLocation)
+  // 3. Envía desglose de Tickets (Mensajes individuales)
+}</code></pre>
+        </section>
+
+    </main>
+
+    <footer class="container text-center mb-4">
+        <p style="opacity: 0.6; font-size: 0.9rem;">&copy; 2025 Mantenimiento Sinai. Documentación Técnica.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html><script src='js/search.js'></script>

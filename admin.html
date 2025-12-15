@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGI Docs | Administrativo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="nav-logo">SGI Docs</a>
+            <div class="nav-links">
+                <a href="tecnico.html" class="nav-link">Técnico</a>
+                <a href="campo.html" class="nav-link">Campo</a>
+                <a href="admin.html" class="nav-link active">Admin</a>
+                <button id="themeToggle" class="theme-toggle">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" style="padding: 80px 0 40px;">
+        <div class="container">
+            <h1>Administración SGI</h1>
+            <p>Gestión de autorizaciones, base de datos y flujos de aprobación.</p>
+        </div>
+    </header>
+
+    <main class="container manual-section">
+
+        <!-- SECCIÓN 1: PROCESO DE AUTORIZACIÓN -->
+        <section class="card mb-4">
+            <h2>1. Flujo de Autorización de Tickets</h2>
+            <p>Para autorizar un ticket y que aparezca como <strong>VALIDADO</strong> en el reporte de Telegram:</p>
+
+            <ol style="margin-left: 1.5rem; margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <li>Accede a la hoja <code>DB_Sucursales</code>.</li>
+                <li>Localiza la fila de la sucursal/ticket correspondiente.</li>
+                <li>Ve a la <strong>Columna N (14)</strong> etiquetada como "Autorizado".</li>
+                <li>Marca la casilla (Checkbox) o escribe <code>TRUE</code>.</li>
+                <li>El sistema detectará el cambio y enviará una notificación a Telegram confirmando la autorización.
+                </li>
+            </ol>
+
+            <div style="margin-top: 1rem; padding: 1rem; border: 1px dashed var(--color-primary); border-radius: 8px;">
+                <strong>Nota Técnica:</strong> El script <code>onMonitorAutorizacion</code> corre automáticamente al
+                editar esta columna.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: TRACKING Y REPORTES -->
+        <section class="card mb-4 reveal">
+            <h2>2. Tablero de Control (DB_Tracking)</h2>
+            <p>La hoja <code>DB_Tracking</code> funciona como bitácora inalterable de los accesos enviados.</p>
+
+            <!-- Dashboard Visual -->
+            <div class="dashboard-grid">
+
+                <!-- Chart 1: Estatus de Tickets -->
+                <div class="chart-card">
+                    <h4>Efectividad de Accesos</h4>
+                    <div class="donut-chart" style="--color-chart: var(--color-secondary);"></div>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">70% Autorizados vs 30% Rechazados</p>
+                </div>
+
+                <!-- Chart 2: Volumetría -->
+                <div class="chart-card">
+                    <h4>Tickets por Región</h4>
+                    <div class="progress-bar-container">
+                        <div class="progress-label"><span>Metro Norte</span><span>45%</span></div>
+                        <div class="progress-track">
+                            <div class="progress-fill" style="width: 45%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-label"><span>Metro Sur</span><span>30%</span></div>
+                        <div class="progress-track">
+                            <div class="progress-fill" style="width: 30%; background-color: #ffc107;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-label"><span>Bajío</span><span>25%</span></div>
+                        <div class="progress-track">
+                            <div class="progress-fill" style="width: 25%; background-color: #17a2b8;"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: SOLUCIÓN DE PROBLEMAS -->
+        <section class="card mb-4">
+            <h2>3. Resolución de Problemas Comunes</h2>
+
+            <div class="card-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 0;">
+                <div
+                    style="background: var(--surface); padding: 1rem; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1);">
+                    <h4 style="color: var(--color-danger);">No llega el PDF</h4>
+                    <p style="font-size: 0.9rem;">Causa probable: Error en el template o falta de datos en la hoja de
+                        respuestas.</p>
+                    <p style="font-size: 0.9rem;"><strong>Solución:</strong> Revisa la columna de "Logs" en Apps Script
+                        o verifica que los campos obligatorios del Form no estén vacíos.</p>
+                </div>
+                <div
+                    style="background: var(--surface); padding: 1rem; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1);">
+                    <h4 style="color: var(--color-danger);">Telegram no notifica</h4>
+                    <p style="font-size: 0.9rem;">Causa probable: El ID de Telegram en <code>Directorio_Regional</code>
+                        está vacío o es incorrecto.</p>
+                    <p style="font-size: 0.9rem;"><strong>Solución:</strong> Pide al líder regional que escriba
+                        <code>/start</code> en el bot para obtener su ID y actualízalo en la hoja.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="container text-center mb-4">
+        <p style="opacity: 0.6; font-size: 0.9rem;">&copy; 2025 Mantenimiento Sinai. Manual Administrativo.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html><script src='js/search.js'></script>

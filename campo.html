@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGI Docs | Operaciones Campo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="nav-logo">SGI Docs</a>
+            <div class="nav-links">
+                <a href="tecnico.html" class="nav-link">Técnico</a>
+                <a href="campo.html" class="nav-link active">Campo</a>
+                <a href="admin.html" class="nav-link">Admin</a>
+                <button id="themeToggle" class="theme-toggle">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" style="padding: 80px 0 40px;">
+        <div class="container">
+            <h1>Operaciones en Campo</h1>
+            <p>Guía rápida para operadores: Accesos, Reportes y Notificaciones</p>
+        </div>
+    </header>
+
+    <main class="container manual-section">
+
+        <!-- SECCIÓN 1: SOLICITUD DE ACCESOS -->
+        <section class="card mb-4">
+            <h2>1. Solicitud de Accesos</h2>
+            <p>Para ingresar a una sucursal, es obligatorio llenar el <strong>Formulario de Accesos</strong> con al
+                menos 24 horas de anticipación (salvo emergencias).</p>
+
+            <div class="steps-grid" style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--color-primary);">Paso 1: Seleccionar Sucursal/Ticket</h4>
+                    <p>En el formulario, busca la sucursal por nombre o número de ticket. Si es un ticket múltiple,
+                        asegúrate de seleccionar el correcto.</p>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--color-primary);">Paso 2: Personal y Herramientas</h4>
+                    <p>Marca todo el personal que asistirá. En herramientas, detalla si llevas equipo mayor (escaleras
+                        grandes, plantas de soldar) para evitar problemas en seguridad.</p>
+                </div>
+            </div>
+
+            <div
+                style="margin-top: 1.5rem; padding: 1rem; background-color: rgba(255, 193, 7, 0.1); border-left: 4px solid var(--color-accent); border-radius: 4px;">
+                <strong>⚠️ Importante:</strong> Si la sucursal no recibe el correo, verifica en el grupo de Telegram que
+                el PDF se haya generado correctamente.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: INTERPRETACIÓN TELEGRAM -->
+        <section class="card mb-4">
+            <h2>2. Notificaciones en Telegram</h2>
+            <p>Recibirás confirmaciones en el grupo regional. Aprende a identificar los estatus rápidamente.</p>
+
+            <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+                <!-- Estatus Autorizado -->
+                <div
+                    style="border: 1px solid var(--color-secondary); border-radius: 8px; padding: 1rem; background: rgba(40, 167, 69, 0.05);">
+                    <h4 style="color: var(--color-secondary);">✅ AUTORIZADO</h4>
+                    <p>Significa que el Gerente o Administrativo ha validado el ingreso. Puedes proceder.</p>
+                </div>
+
+                <!-- Estatus Rechazado/Cancelado -->
+                <div
+                    style="border: 1px solid var(--color-danger); border-radius: 8px; padding: 1rem; background: rgba(220, 53, 69, 0.05);">
+                    <h4 style="color: var(--color-danger);">🚫 NO AUTORIZADO / CANCELADO</h4>
+                    <p>El acceso ha sido denegado o cancelado. Revisa la descripción del ticket o contacta a tu líder.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: REPORTE DE HALLAZGOS (COTIZADOR) -->
+        <section class="card mb-4">
+            <h2>3. Reporte de Hallazgos (Cotizador IA)</h2>
+            <p>Al reportar un hallazgo para cotización, sé descriptivo. La IA usa tu texto para calcular costos.</p>
+
+            <table style="width:100%; border-collapse: collapse; margin-top: 1rem;">
+                <thead>
+                    <tr style="background: rgba(0,0,0,0.05);">
+                        <th style="padding:10px; text-align: left;">Mal Ejemplo ❌</th>
+                        <th style="padding:10px; text-align: left;">Buen Ejemplo ✅</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding:10px; color: var(--color-danger);">"Pintar pared fea."</td>
+                        <td style="padding:10px; color: var(--color-secondary);">"Se requiere pintura en muro de
+                            tablaroca de <strong>15 m2</strong>. Incluye resane de grietas menores y limpieza."</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:10px; color: var(--color-danger);">"Cambiar cables."</td>
+                        <td style="padding:10px; color: var(--color-secondary);">"Sustitución de cableado eléctrico
+                            calibre 12 en circuito de iluminación, aprox <strong>20 metros lineales</strong>."</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.8;">*Incluir medidas (metros, piezas) ayuda a la
+                IA a ser precisa.</p>
+        </section>
+
+    </main>
+
+    <footer class="container text-center mb-4">
+        <p style="opacity: 0.6; font-size: 0.9rem;">&copy; 2025 Mantenimiento Sinai. Manual de Campo.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html><script src='js/search.js'></script>

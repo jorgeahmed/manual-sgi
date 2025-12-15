@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGI Docs | Manual del Sistema</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="nav-logo">SGI Docs</a>
+            <div class="nav-links">
+                <a href="tecnico.html" class="nav-link">Técnico</a>
+                <a href="campo.html" class="nav-link">Campo</a>
+                <a href="admin.html" class="nav-link">Admin</a>
+                <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Sistema de Gestión Integral (SGI)</h1>
+            <p>Documentación centralizada para la operación, administración y mantenimiento del ecosistema digital de Misinai.</p>
+            <a href="#manuales" class="btn btn-primary">Explorar Manuales</a>
+        </div>
+    </header>
+
+    <main id="manuales" class="container manual-section">
+        <div class="card-grid">
+            <!-- Manual Técnico -->
+            <article class="card">
+                <h3>🛠️ Manual Técnico</h3>
+                <p>Mapa de código, arquitectura data-driven, integraciones API (OpenAI, Telegram) y flujos de datos.</p>
+                <div style="margin-top: 1rem;">
+                    <a href="tecnico.html" class="btn btn-primary">Ver Código</a>
+                </div>
+            </article>
+
+            <!-- Manual Operativo (Campo) -->
+            <article class="card">
+                <h3>👷 Operaciones Campo</h3>
+                <p>Guía para el personal operativo: Llenado de formularios, reportes fotográficos y uso de Telegram.</p>
+                <div style="margin-top: 1rem;">
+                    <a href="campo.html" class="btn btn-primary">Ver Guía</a>
+                </div>
+            </article>
+
+            <!-- Manual Administrativo -->
+            <article class="card">
+                <h3>📊 Administrativo</h3>
+                <p>Gestión de autorizaciones, monitoreo de tickets, generación de cotizaciones y dashboards.</p>
+                <div style="margin-top: 1rem;">
+                    <a href="admin.html" class="btn btn-primary">Ver Admin</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="container text-center mb-4">
+        <p style="opacity: 0.6; font-size: 0.9rem;">&copy; 2025 Mantenimiento Sinai. Sistema SGI V33.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+<script src='js/search.js'></script>
